@@ -143,6 +143,21 @@ struct App_WebView: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
             print("redirect url: \(webView.url?.absoluteString ?? "N/A")")
+            
+//            if let currentURL = webView.url, currentURL.lastPathComponent == "idpresponse" {
+//                
+//                
+//                webView.stopLoading()
+//                
+//                if var urlComponents = URLComponents(string: currentURL.absoluteString) {
+//                    let newQueryItem = URLQueryItem(name: "client_id", value: CognitoKeys().client_id)
+//                    urlComponents.queryItems?.append(newQueryItem) // Add to existing query items
+//                    if let updatedUrl = urlComponents.url {
+//                        print("Updated URL: \(updatedUrl)")
+//                        webView.load(URLRequest(url: updatedUrl))
+//                    }
+//                }
+//            }
         }
         
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
