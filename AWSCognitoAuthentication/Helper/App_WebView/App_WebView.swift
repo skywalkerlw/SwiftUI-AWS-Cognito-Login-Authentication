@@ -11,12 +11,14 @@ import WebKit
 
 // MARK: - WebViewHandlerDelegate
 
+
 struct CognitoKeys {
-    let user_pool_domain = "<your_user_pool_domain>"
-    let redirect_uri = "<your_redirect_uri>"
-    let client_id = "<your_user_pool_client_id>"
-    let client_secret = "<your_user_pool_client_secret>"
-    let app_scope =  "<your_app_scope>" // eg: "aws.cognito.signin.user.admin+email+openid+phone+profile"
+    let user_pool_domain = "https://ap-southeast-2savyyk6fr.auth.ap-southeast-2.amazoncognito.com"
+//    let user_pool_domain = "https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_saVyYk6FR"
+    let redirect_uri = "https://www.google.com/"
+    let client_id = "7to7ucqto7qfgiopv25ksfpdgs"
+    let client_secret = ""
+    let app_scope =  "email" // eg: "aws.cognito.signin.user.admin+email+openid+phone+profile"
 }
 
 // MARK: - WebView
