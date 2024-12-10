@@ -18,7 +18,9 @@ struct CognitoKeys {
     let redirect_uri = "https://www.google.com/"
     let client_id = "7to7ucqto7qfgiopv25ksfpdgs"
     let client_secret = ""
-    let app_scope =  "email" // eg: "aws.cognito.signin.user.admin+email+openid+phone+profile"
+    
+    // https://docs.aws.amazon.com/cognito/latest/developerguide/tutorial-create-user-pool-social-idp.html
+    let app_scope =  "email+openid+phone" // eg: "aws.cognito.signin.user.admin+email+openid+phone+profile"
 }
 
 // MARK: - WebView
@@ -48,6 +50,7 @@ struct App_WebView: UIViewRepresentable {
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.isScrollEnabled = true
+        webView.isInspectable = true
         
         let cookieStore = webView.configuration.websiteDataStore.httpCookieStore
         cookieStore.getAllCookies { cookies in
@@ -63,6 +66,7 @@ struct App_WebView: UIViewRepresentable {
         if let url = URL(string: loadingUrl) {
             webView.load(URLRequest(url: url))
             
+            // This is required for Google (not sure whether it's required on simulator only or not)
             webView.customUserAgent = "'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) ' 'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Mobile Safari/537.36'"
         }
     }
@@ -82,6 +86,9 @@ struct App_WebView: UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            
+            print("xxxx  \(webView.url?.absoluteString ?? "No URL")")
+            
             // Get the title of loaded webcontent
             webView.evaluateJavaScript("document.title") { (response, error) in
                 if let error = error {
@@ -132,6 +139,10 @@ struct App_WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
             // Shows loader
             parent.viewModel.showLoader.send(true)
+        }
+        
+        func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+            print("redirect url: \(webView.url?.absoluteString ?? "N/A")")
         }
         
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

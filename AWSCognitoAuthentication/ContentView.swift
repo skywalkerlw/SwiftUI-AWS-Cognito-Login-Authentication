@@ -11,7 +11,7 @@ enum LoginType : String {
     case Google = "Google"
     case SignInWithApple = "SignInWithApple"
     case LoginWithAmazon = "LoginWithAmazon"
-    case Facebook = "Facebook"
+    case Facebook = "Facebook"  // 如何设置facebook： https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-social-idp.html
     case UserSignUp = "UserSignUp"
     case UserSignIn = "UserSignIn"
     case None = "None"
@@ -24,7 +24,7 @@ struct ContentView: View {
     @State var isSheetOpen = false
     @State var loginType: String = ""
     @State var webData = WebUserData()
-    @State var list: [ListData] = [ListData(id: "1",name: "Login with Google") , ListData(id: "2",name: "Login with Apple"), ListData(id: "3",name: "Login"), ListData(id: "4",name: "Signup")]
+    @State var list: [ListData] = [ListData(id: "1",name: "Login with Google") , ListData(id: "2",name: "Login with Apple"), ListData(id: "3",name: "Login"), ListData(id: "4",name: "Signup"), ListData(id: "5",name: "Login with Facebook")]
     
     var body: some View {
         // webViewNavigationBarHelper
@@ -43,6 +43,8 @@ struct ContentView: View {
                                     loginType = LoginType.UserSignIn.rawValue
                                 }else if item.id == "4" {
                                     loginType = LoginType.UserSignUp.rawValue
+                                }else if item.id == "5" {
+                                    loginType = LoginType.Facebook.rawValue
                                 }
                                 
                             }.buttonStyle(.bordered).padding(.top, 20)
@@ -93,6 +95,9 @@ struct ContentView: View {
         var webUrl = ""
         if type == LoginType.Google.rawValue {
             let identity_provider = "Google"
+            webUrl = "\(CognitoKeys().user_pool_domain)/oauth2/authorize?identity_provider=\(identity_provider)&client_id=\(CognitoKeys().client_id)&response_type=code&scope=\(CognitoKeys().app_scope)&redirect_uri=\(CognitoKeys().redirect_uri)"
+        } else if type == LoginType.Facebook.rawValue {
+            let identity_provider = "Facebook"
             webUrl = "\(CognitoKeys().user_pool_domain)/oauth2/authorize?identity_provider=\(identity_provider)&client_id=\(CognitoKeys().client_id)&response_type=code&scope=\(CognitoKeys().app_scope)&redirect_uri=\(CognitoKeys().redirect_uri)"
         } else if type == LoginType.SignInWithApple.rawValue {
             let identity_provider = "SignInWithApple"
