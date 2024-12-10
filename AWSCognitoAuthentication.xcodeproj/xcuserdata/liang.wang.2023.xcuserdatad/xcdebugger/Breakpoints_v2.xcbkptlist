@@ -14,8 +14,8 @@
             filePath = "AWSCognitoAuthentication/Helper/App_WebView/App_WebView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "webView(_:didReceiveServerRedirectForProvisionalNavigation:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "AWSCognitoAuthentication/Helper/App_WebView/App_WebView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "webView(_:didReceiveServerRedirectForProvisionalNavigation:)"
             landmarkType = "7">
          </BreakpointContent>

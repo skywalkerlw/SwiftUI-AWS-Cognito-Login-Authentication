@@ -13,14 +13,14 @@ import WebKit
 
 
 struct CognitoKeys {
-    let user_pool_domain = "https://ap-southeast-2savyyk6fr.auth.ap-southeast-2.amazoncognito.com"
+    let user_pool_domain = "https://ap-southeast-2dechhfhai.auth.ap-southeast-2.amazoncognito.com"
 //    let user_pool_domain = "https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_saVyYk6FR"
-    let redirect_uri = "https://www.google.com/"
-    let client_id = "7to7ucqto7qfgiopv25ksfpdgs"
+    let redirect_uri = "covermore://auth"
+    let client_id = "77gm6chmenfk0tsun18g9nnnin"
     let client_secret = ""
     
     // https://docs.aws.amazon.com/cognito/latest/developerguide/tutorial-create-user-pool-social-idp.html
-    let app_scope =  "email+openid+phone" // eg: "aws.cognito.signin.user.admin+email+openid+phone+profile"
+    let app_scope =  "email+openid" // eg: "aws.cognito.signin.user.admin+email+openid+phone+profile"
 }
 
 // MARK: - WebView
